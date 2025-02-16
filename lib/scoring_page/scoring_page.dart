@@ -1,6 +1,14 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:reefscape_scoring_robotbirds/button_state_manager.dart';
+import 'package:reefscape_scoring_robotbirds/comms/comms.dart';
+import 'package:reefscape_scoring_robotbirds/comms/comms_manager.dart';
+import 'package:reefscape_scoring_robotbirds/scoring_page/branch_score.dart';
+import 'package:reefscape_scoring_robotbirds/scoring_page/reef_score.dart';
+import 'package:reefscape_scoring_robotbirds/scoring_page/scoring_button.dart';
+import 'package:reefscape_scoring_robotbirds/scoring_page/status_bar.dart';
 
 class ScoringPage extends StatefulWidget {
   const ScoringPage({super.key});
@@ -10,44 +18,44 @@ class ScoringPage extends StatefulWidget {
 }
 
 class _ScoringPageState extends State<ScoringPage> {
-
-  String currentSelected = "H";
+  ButtonStateManager buttonState = ButtonStateManager();
+  CommsManager comms = CommsManager();
 
   @override
   Widget build(BuildContext context) {
-
-    int reefButtonSize = 110;
-
     return Scaffold(
-      body: Stack(
-        children: [
-          //Field Image
-          Container(
-            color: Color.fromRGBO(62, 62, 62, 1),
-            child: Center(
-              child: Image(
-                image: AssetImage("assets/field_image.png"),
-                fit: BoxFit.cover,
+        body: Stack(
+      children: [
+        //Reef Widget
+        Container(
+          color: Color.fromRGBO(62, 62, 62, 1),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            FittedBox(fit:BoxFit.scaleDown ,child: Padding(
+              padding: EdgeInsets.fromLTRB(Platform.isWindows ? 30 : 120, 90, 0, 30),
+              child: ReefScoringWidget(buttonState: buttonState),
+            )),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(30, 50, 0, 15),
+                child: FittedBox(
+                  child: BranchScoreWidget(buttonState: buttonState),
+                ),
               ),
             ),
-          ),
-          //Status
 
-          Row(
-            children: [
-              Container(
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: Colors.blue),
-                margin: const EdgeInsets.all(16),
-                padding: const EdgeInsets.all(8),
-                child: Text("Robo T-Birds 1672"),
-              )
-            ],
-          ),
-
-
-
-        ],
-      )
-    );
+          ],
+        ),
+        //Status
+        StatusBar(
+          color1: Colors.red,
+          color2: Colors.orange,
+          duration: 250,
+          comms: comms,
+        ),
+      ],
+    ));
   }
 }
