@@ -12,7 +12,7 @@ class ScoringButton extends StatefulWidget {
   final bool algae;
   final Comms comms;
   final Widget? customButtonChild;
-  ScoringButton({super.key, required this.buttonState, required this.name, required this.callback, required this.coords, required this.reef, this.customButtonChild, this.algae = false, required this.comms});
+  const ScoringButton({super.key, required this.buttonState, required this.name, required this.callback, required this.coords, required this.reef, this.customButtonChild, this.algae = false, required this.comms});
 
   @override
   State<ScoringButton> createState() => _ScoringButtonState();
