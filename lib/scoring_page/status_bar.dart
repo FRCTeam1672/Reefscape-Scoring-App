@@ -29,8 +29,8 @@ class _StatusBarState extends State<StatusBar> {
       Duration(milliseconds: widget.duration),
       (timer) {
         setState(() {
-          if(widget.comms.isConnected) {
-            color = Colors.green[900]!;
+          if(widget.comms.comms.isConnected()) {
+            color = Color.fromRGBO(0, 255, 0, 1);
           } else {
             color = color == widget.color1 ? widget.color2 : widget.color1;
           }
@@ -65,6 +65,7 @@ class _StatusBarState extends State<StatusBar> {
             ],
           ),
         ),
+        getReconnectButton(),
         Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16), color: Colors.blue),
@@ -73,7 +74,7 @@ class _StatusBarState extends State<StatusBar> {
           child: Row(
             children: [
               Text(
-                widget.comms.isConnected ? "CONNECTED" : "NO COMMS",
+                widget.comms.comms.isConnected() ? "CONNECTED" : "NO COMMS",
                 style: TextStyle(
                     fontFamily: "BebasNeue", fontSize: 30, color: color),
               ),
@@ -90,5 +91,15 @@ class _StatusBarState extends State<StatusBar> {
         )
       ],
     );
+  }
+
+  Widget getReconnectButton() {
+    if(widget.comms.comms.isConnected()) return const SizedBox.shrink();
+    return FilledButton(onPressed: () {
+      widget.comms.setupComms();
+      setState(() {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Attempted to reconnect by re-initializing comms. ${Platform.isWindows ? "\nReconnecting to NT4 on 10.16.72.2." : "Reopening USB Connection"}")));
+      });
+    }, child: Text("Re-init Comms"));
   }
 }

@@ -11,7 +11,7 @@ void main() async {
 
     WindowOptions windowOptions = const WindowOptions(
       size: Size(1700, 900),
-      minimumSize: Size(850, 720),
+      minimumSize: Size(1300, 720),
       center: true,
       title: 'Dashboard',
     );

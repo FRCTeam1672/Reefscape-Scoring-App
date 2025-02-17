@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:reefscape_scoring_robotbirds/button_state_manager.dart';
 import 'package:reefscape_scoring_robotbirds/scoring_page/scoring_button.dart';
 
+import '../comms/comms.dart';
+
 class ReefScoringWidget extends StatefulWidget {
   final ButtonStateManager buttonState;
-  const ReefScoringWidget({super.key, required this.buttonState});
+  final Comms comms;
+  const ReefScoringWidget({super.key, required this.buttonState, required this.comms});
 
   @override
   State<ReefScoringWidget> createState() => _ReefScoringWidgetState();
@@ -31,8 +34,8 @@ class _ReefScoringWidgetState extends State<ReefScoringWidget> {
       "K": [420, 0],
       "L": [540, 65],
 
-      "C": [420, 545],
-      "D": [540, 480],
+      "C": [540, 480],
+      "D": [420, 545],
 
       "A": [600, 210],
       "B": [600, 340],
@@ -47,6 +50,7 @@ class _ReefScoringWidgetState extends State<ReefScoringWidget> {
           ),
         ),
         ScoringButton(
+          comms: widget.comms,
           coords: coords,
           buttonState: buttonState,
           name: "H",
@@ -54,6 +58,7 @@ class _ReefScoringWidgetState extends State<ReefScoringWidget> {
           callback: () => setState(() {}),
         ),
         ScoringButton(
+          comms: widget.comms,
           coords: coords,
           buttonState: buttonState,
           name: "G",
@@ -64,6 +69,7 @@ class _ReefScoringWidgetState extends State<ReefScoringWidget> {
 
 
         ScoringButton(
+          comms: widget.comms,
           coords: coords,
           buttonState: buttonState,
           reef: true,
@@ -71,6 +77,7 @@ class _ReefScoringWidgetState extends State<ReefScoringWidget> {
           callback: () => setState(() {}),
         ),
         ScoringButton(
+          comms: widget.comms,
           coords: coords,
           buttonState: buttonState,
           reef: true,
@@ -80,6 +87,7 @@ class _ReefScoringWidgetState extends State<ReefScoringWidget> {
 
 
         ScoringButton(
+          comms: widget.comms,
           coords: coords,
           buttonState: buttonState,
           reef: true,
@@ -87,6 +95,7 @@ class _ReefScoringWidgetState extends State<ReefScoringWidget> {
           callback: () => setState(() {}),
         ),
         ScoringButton(
+          comms: widget.comms,
           coords: coords,
           buttonState: buttonState,
           reef: true,
@@ -95,6 +104,7 @@ class _ReefScoringWidgetState extends State<ReefScoringWidget> {
         ),
 
         ScoringButton(
+          comms: widget.comms,
           coords: coords,
           buttonState: buttonState,
           reef: true,
@@ -102,6 +112,7 @@ class _ReefScoringWidgetState extends State<ReefScoringWidget> {
           callback: () => setState(() {}),
         ),
         ScoringButton(
+          comms: widget.comms,
           coords: coords,
           buttonState: buttonState,
           reef: true,
@@ -111,6 +122,7 @@ class _ReefScoringWidgetState extends State<ReefScoringWidget> {
 
 
         ScoringButton(
+          comms: widget.comms,
           coords: coords,
           buttonState: buttonState,
           reef: true,
@@ -118,6 +130,7 @@ class _ReefScoringWidgetState extends State<ReefScoringWidget> {
           callback: () => setState(() {}),
         ),
         ScoringButton(
+          comms: widget.comms,
           coords: coords,
           buttonState: buttonState,
           reef: true,
@@ -127,6 +140,7 @@ class _ReefScoringWidgetState extends State<ReefScoringWidget> {
 
 
         ScoringButton(
+          comms: widget.comms,
           coords: coords,
           buttonState: buttonState,
           reef: true,
@@ -134,6 +148,7 @@ class _ReefScoringWidgetState extends State<ReefScoringWidget> {
           callback: () => setState(() {}),
         ),
         ScoringButton(
+          comms: widget.comms,
           coords: coords,
           buttonState: buttonState,
           reef: true,

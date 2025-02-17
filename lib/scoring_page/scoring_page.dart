@@ -18,8 +18,14 @@ class ScoringPage extends StatefulWidget {
 }
 
 class _ScoringPageState extends State<ScoringPage> {
-  ButtonStateManager buttonState = ButtonStateManager();
+  ButtonStateManager buttonState = ButtonManager.stateManager;
   CommsManager comms = CommsManager();
+  @override
+  void initState() {
+    // TODO: implement initState
+    comms.setupComms();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +41,13 @@ class _ScoringPageState extends State<ScoringPage> {
           children: [
             FittedBox(fit:BoxFit.scaleDown ,child: Padding(
               padding: EdgeInsets.fromLTRB(Platform.isWindows ? 30 : 120, 90, 0, 30),
-              child: ReefScoringWidget(buttonState: buttonState),
+              child: ReefScoringWidget(buttonState: buttonState, comms: comms.comms,),
             )),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(30, 50, 0, 15),
                 child: FittedBox(
-                  child: BranchScoreWidget(buttonState: buttonState),
+                  child: BranchScoreWidget(buttonState: buttonState, comms: comms.comms,),
                 ),
               ),
             ),

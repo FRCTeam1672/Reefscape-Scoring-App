@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:reefscape_scoring_robotbirds/button_state_manager.dart';
 
+import '../comms/comms.dart';
+
 class ScoringButton extends StatefulWidget {
   final ButtonStateManager buttonState;
   final String name;
@@ -8,8 +10,9 @@ class ScoringButton extends StatefulWidget {
   final Map<String, List<double>> coords;
   final bool reef;
   final bool algae;
+  final Comms comms;
   Widget? customButtonChild;
-  ScoringButton({super.key, required this.buttonState, required this.name, required this.callback, required this.coords, required this.reef, this.customButtonChild, this.algae = false});
+  ScoringButton({super.key, required this.buttonState, required this.name, required this.callback, required this.coords, required this.reef, this.customButtonChild, this.algae = false, required this.comms});
 
   @override
   State<ScoringButton> createState() => _ScoringButtonState();
@@ -44,10 +47,11 @@ class _ScoringButtonState extends State<ScoringButton> {
             widget.buttonState.currentLevel = int.parse(widget.name);
 
           }
+          widget.comms.sendAllData();
           widget.callback();
         },
         backgroundColor: color,
-        child: widget.customButtonChild ?? Text(widget.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+        child: widget.customButtonChild ?? Text(widget.name == "A0" ? "P" : widget.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
       ),
     );
   }

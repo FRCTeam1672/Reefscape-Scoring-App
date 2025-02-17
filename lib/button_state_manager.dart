@@ -9,7 +9,6 @@ class ButtonStateManager{
   }
 
   set currentSide(String current) {
-    print("Updated side.");
     _currentSide = current;
   }
 
@@ -31,4 +30,10 @@ class ButtonStateManager{
     _currentAlgae = current;
   }
 
+}
+class ButtonManager {
+  static final ButtonStateManager _stateManager = ButtonStateManager();
+  static ButtonStateManager get stateManager {
+    return _stateManager;
+  }
 }
