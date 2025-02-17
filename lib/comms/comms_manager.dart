@@ -16,4 +16,10 @@ class CommsManager {
     return _comms;
   }
 
+  get manualLocalHost => _comms.manualLocalHost;
+
+  set setManualLocalHost(bool manualLocalHost) {
+    _comms.manualLocalHost = manualLocalHost;
+  }
+
 }

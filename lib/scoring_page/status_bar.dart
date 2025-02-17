@@ -86,6 +86,7 @@ class _StatusBarState extends State<StatusBar>
           ),
         ),
         getReconnectButton(),
+        getLocalHostButton(),
         Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16), color: Colors.blue),
@@ -120,7 +121,32 @@ class _StatusBarState extends State<StatusBar>
                     "Attempted to reconnect by re-initializing comms. ${Platform.isWindows ? "\nReconnecting to NT4 on 10.16.72.2." : "Reopening USB Connection"}")));
           });
         },
-        child: Text("Re-init Comms"));
+        child: Text("Re-init Comms (DANGEROUS)"));
+  }
+
+  Widget getLocalHostButton() {
+    if (widget.comms.comms.isConnected()) return const SizedBox.shrink();
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16), color: Colors.blue),
+      margin: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(8),
+      child: Row(
+        children: [
+          Checkbox(
+            onChanged: (value) {
+              widget.comms.setManualLocalHost = value!;
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(
+                    "Updated the IP to ${widget.comms.comms.ipAddr}. It may take up to 20 seconds to reconnect..."),
+              ));
+            },
+            value: widget.comms.manualLocalHost,
+          ),
+          Text("Connect to LocalHost")
+        ],
+      ),
+    );
   }
 
   Widget getConnectedText() {
@@ -130,21 +156,30 @@ class _StatusBarState extends State<StatusBar>
         style: TextStyle(fontFamily: "BebasNeue", fontSize: 30, color: color),
       );
     } else {
-      return GradientAnimationText(
-        text: Text(
-          'CONNECTED',
-          style: TextStyle(
-              fontFamily: "BebasNeue", fontSize: 30
+      return Row(
+        children: [
+          GradientAnimationText(
+            text: Text(
+              'CONNECTED',
+              style: TextStyle(fontFamily: "BebasNeue", fontSize: 30),
+            ),
+            colors: [
+              Color(0xff8f00ff), // violet
+              Colors.green,
+              Colors.yellow,
+              Colors.orange,
+              Colors.red,
+            ],
+            duration: Duration(milliseconds: 1000),
           ),
-        ),
-        colors: [
-          Color(0xff8f00ff),  // violet
-          Colors.green,
-          Colors.yellow,
-          Colors.orange,
-          Colors.red,
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            "(${widget.comms.comms.ipAddr})",
+            style: TextStyle(fontFamily: "BebasNeue", fontSize: 18),
+          )
         ],
-        duration: Duration(milliseconds: 1000),
       );
     }
   }

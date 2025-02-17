@@ -6,22 +6,26 @@ import 'package:reefscape_scoring_robotbirds/button_state_manager.dart';
 import 'package:reefscape_scoring_robotbirds/comms/comms.dart';
 
 class NT4Comms implements Comms {
-  static const String _robotAddress = kDebugMode ? '127.0.0.1' : '10.16.72.2';
-
   late NT4Client _client;
 
   late StreamIterator iterator;
 
   late NT4Topic _reefSidePub;
+
   late NT4Topic _coralLevelPub;
   late NT4Topic _algaeLevelPub;
   late NT4Topic _coralStationPub;
-
   String _currentSide = "A";
+
   int _currentLevel = 1;
   int _currentAlgae = 2;
-
   bool _connected = false;
+
+  bool _manualLocalHost = kDebugMode;
+  late String _robotAddress;
+  NT4Comms() {
+    findRobotIP();
+  }
 
   @override
   void init() {
@@ -29,13 +33,12 @@ class NT4Comms implements Comms {
     _client = NT4Client(
       serverBaseAddress: _robotAddress,
       onConnect: () {
+        print('"Connected to the Robot.');
         Future.delayed(const Duration(milliseconds: 200), () => sendAllData());
         _connected = true;
       },
       onDisconnect: () => _connected = false,
     );
-
-    print('"Connected to the Robot.');
 
     _reefSidePub = _client.publishNewTopic(
         '/AppScoring/ReefSide', NT4TypeStr.typeStr);
@@ -103,5 +106,23 @@ class NT4Comms implements Comms {
   CommsType getType() {
     return CommsType.nt4;
   }
+
+  @override
+  set manualLocalHost(bool manualLocalHost) {
+    _manualLocalHost = manualLocalHost;
+    findRobotIP();
+    _client.setServerBaseAddress(_robotAddress);
+    print('"Updated Robot IP to $_robotAddress');
+  }
+
+  void findRobotIP() {
+    _robotAddress = _manualLocalHost ? "127.0.0.1" : "10.16.72.2";
+  }
+
+  @override
+  bool get manualLocalHost => _manualLocalHost;
+
+  @override
+  String get ipAddr => _robotAddress;
 
 }

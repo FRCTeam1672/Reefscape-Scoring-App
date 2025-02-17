@@ -32,4 +32,16 @@ class USBComms implements Comms{
 
   }
 
+  @override
+  bool get manualLocalHost => false;
+
+  @override
+  set manualLocalHost(bool manualLocalHost) {
+    // TODO: implement manualLocalHost
+  }
+
+  @override
+  // TODO: implement ipAddr
+  String get ipAddr => throw UnimplementedError();
+
 }
