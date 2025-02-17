@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
   Widget getApp() {
     if(Platform.isAndroid) {
       return Center(
-        child: Text("Unfortunately, due to limitations of Flutter and USB, Android, or any other operating system besides Windows is not supported. \nPlease run this software on a second touchscreen monitor.\n - Team 1672", style: TextStyle(fontSize: 128, fontFamily: "BebasNeue"),),
+        child: Text("Unfortunately, due to limitations of Flutter and USB, Android, or any other operating system besides Windows is not supported. \nPlease run this software on a second touchscreen monitor.\n - Team 1672", style: TextStyle(fontSize: 48, fontFamily: "BebasNeue"),),
       );
     }
     return ScoringPage();
