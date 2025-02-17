@@ -11,7 +11,7 @@ class ScoringButton extends StatefulWidget {
   final bool reef;
   final bool algae;
   final Comms comms;
-  Widget? customButtonChild;
+  final Widget? customButtonChild;
   ScoringButton({super.key, required this.buttonState, required this.name, required this.callback, required this.coords, required this.reef, this.customButtonChild, this.algae = false, required this.comms});
 
   @override
@@ -51,7 +51,7 @@ class _ScoringButtonState extends State<ScoringButton> {
           widget.callback();
         },
         backgroundColor: color,
-        child: widget.customButtonChild ?? Text(widget.name == "A0" ? "P" : widget.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+        child: widget.customButtonChild ?? Text(widget.name == "A0" ? "P" : widget.reef || widget.algae ? widget.name : "L${widget.name}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
       ),
     );
   }

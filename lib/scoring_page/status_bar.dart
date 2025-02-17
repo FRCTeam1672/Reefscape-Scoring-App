@@ -61,6 +61,9 @@ class _StatusBarState extends State<StatusBar>
           child: Row(
             children: [
               Image.asset("assets/team_logo.png", scale: 7),
+              SizedBox(
+                width: 20,
+              ),
               Text(
                 "Robo T-Birds 1672",
                 style: TextStyle(fontFamily: "BebasNeue", fontSize: 36),
