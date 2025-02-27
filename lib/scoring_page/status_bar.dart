@@ -96,7 +96,7 @@ class _StatusBarState extends State<StatusBar>
             children: [
               getConnectedText(),
               SizedBox(
-                width: 50,
+                width: 25,
               ),
               Text(
                 "Mode: ${Platform.isWindows ? "Windows (NT4)" : "USB"}",

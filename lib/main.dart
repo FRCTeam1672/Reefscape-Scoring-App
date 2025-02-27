@@ -10,7 +10,7 @@ void main() async {
     await windowManager.ensureInitialized();
 
     WindowOptions windowOptions = const WindowOptions(
-      size: Size(1700, 900),
+      size: Size(1300, 850),
       minimumSize: Size(1300, 850),
       center: true,
       title: 'Dashboard',
