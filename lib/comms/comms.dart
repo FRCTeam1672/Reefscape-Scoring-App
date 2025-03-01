@@ -11,9 +11,9 @@ abstract class Comms {
 
   CommsType getType();
 
-  set manualLocalHost(bool manualLocalHost);
+  set rioUSB(bool manualLocalHost);
 
-  bool get manualLocalHost;
+  bool get rioUSB;
 
   String get ipAddr;
 }

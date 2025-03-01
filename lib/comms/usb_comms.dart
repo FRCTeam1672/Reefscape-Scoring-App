@@ -33,10 +33,10 @@ class USBComms implements Comms{
   }
 
   @override
-  bool get manualLocalHost => false;
+  bool get rioUSB => false;
 
   @override
-  set manualLocalHost(bool manualLocalHost) {
+  set rioUSB(bool manualLocalHost) {
     // TODO: implement manualLocalHost
   }
 

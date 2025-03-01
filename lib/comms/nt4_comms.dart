@@ -21,7 +21,7 @@ class NT4Comms implements Comms {
   int _currentAlgae = 2;
   bool _connected = false;
 
-  bool _manualLocalHost = kDebugMode;
+  bool _rioUSB = false;
   late String _robotAddress;
   NT4Comms() {
     findRobotIP();
@@ -108,19 +108,19 @@ class NT4Comms implements Comms {
   }
 
   @override
-  set manualLocalHost(bool manualLocalHost) {
-    _manualLocalHost = manualLocalHost;
+  set rioUSB(bool rioUSB) {
+    _rioUSB = rioUSB;
     findRobotIP();
     _client.setServerBaseAddress(_robotAddress);
     print('"Updated Robot IP to $_robotAddress');
   }
 
   void findRobotIP() {
-    _robotAddress = _manualLocalHost ? "127.0.0.1" : "10.16.72.2";
+    _robotAddress = kDebugMode ? "127.0.0.1": _rioUSB ? "172.22.11.2" : "10.16.72.2";
   }
 
   @override
-  bool get manualLocalHost => _manualLocalHost;
+  bool get rioUSB => _rioUSB;
 
   @override
   String get ipAddr => _robotAddress;

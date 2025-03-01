@@ -16,10 +16,10 @@ class CommsManager {
     return _comms;
   }
 
-  get manualLocalHost => _comms.manualLocalHost;
+  get manualLocalHost => _comms.rioUSB;
 
   set setManualLocalHost(bool manualLocalHost) {
-    _comms.manualLocalHost = manualLocalHost;
+    _comms.rioUSB = manualLocalHost;
   }
 
 }

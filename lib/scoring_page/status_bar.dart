@@ -86,7 +86,7 @@ class _StatusBarState extends State<StatusBar>
           ),
         ),
         getReconnectButton(),
-        getLocalHostButton(),
+        getRIOUSBButton(),
         Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16), color: Colors.blue),
@@ -124,7 +124,7 @@ class _StatusBarState extends State<StatusBar>
         child: Text("Re-init Comms (DANGEROUS)"));
   }
 
-  Widget getLocalHostButton() {
+  Widget getRIOUSBButton() {
     if (widget.comms.comms.isConnected()) return const SizedBox.shrink();
     return Container(
       decoration: BoxDecoration(
@@ -143,7 +143,7 @@ class _StatusBarState extends State<StatusBar>
             },
             value: widget.comms.manualLocalHost,
           ),
-          Text("Connect to LocalHost")
+          Text("USB Connection")
         ],
       ),
     );
