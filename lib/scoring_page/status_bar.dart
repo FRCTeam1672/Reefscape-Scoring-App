@@ -96,6 +96,13 @@ class _StatusBarState extends State<StatusBar>
             children: [
               getConnectedText(),
               SizedBox(
+                width: 10,
+              ),
+              Text(
+                "(${widget.comms.comms.ipAddr})",
+                style: TextStyle(fontFamily: "BebasNeue", fontSize: 18),
+              ),
+              SizedBox(
                 width: 25,
               ),
               Text(
@@ -118,10 +125,10 @@ class _StatusBarState extends State<StatusBar>
           setState(() {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text(
-                    "Attempted to reconnect by re-initializing comms. ${Platform.isWindows ? "\nReconnecting to NT4 on 10.16.72.2." : "Reopening USB Connection"}")));
+                    "Attempted to reconnect by re-initializing comms. ${Platform.isWindows ? "\nReconnecting to NT4 on ${widget.comms.comms.ipAddr}" : "Reopening USB Connection"}")));
           });
         },
-        child: Text("Re-init Comms (DANGEROUS)"));
+        child: Text("Re-Init Comms (💀)"));
   }
 
   Widget getRIOUSBButton() {
@@ -143,7 +150,7 @@ class _StatusBarState extends State<StatusBar>
             },
             value: widget.comms.manualLocalHost,
           ),
-          Text("USB Connection")
+          Text("RIO USB")
         ],
       ),
     );
@@ -172,13 +179,6 @@ class _StatusBarState extends State<StatusBar>
             ],
             duration: Duration(milliseconds: 1000),
           ),
-          SizedBox(
-            width: 10,
-          ),
-          Text(
-            "(${widget.comms.comms.ipAddr})",
-            style: TextStyle(fontFamily: "BebasNeue", fontSize: 18),
-          )
         ],
       );
     }

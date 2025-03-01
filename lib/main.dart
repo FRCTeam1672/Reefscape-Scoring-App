@@ -10,14 +10,15 @@ void main() async {
     await windowManager.ensureInitialized();
 
     WindowOptions windowOptions = const WindowOptions(
-      size: Size(1300, 850),
-      minimumSize: Size(1300, 850),
+      size: Size(1500, 850),
+      minimumSize: Size(1500, 850),
       center: true,
-      title: 'Dashboard',
+      title: '1672 Reefscape Scoring',
     );
     windowManager.waitUntilReadyToShow(windowOptions, () async {
       await windowManager.show();
       await windowManager.focus();
+      await windowManager.maximize(vertically: true);
     });
   }
   runApp(const MyApp());
