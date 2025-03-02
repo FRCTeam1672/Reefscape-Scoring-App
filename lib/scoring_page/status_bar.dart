@@ -86,32 +86,36 @@ class _StatusBarState extends State<StatusBar>
           ),
         ),
         getReconnectButton(),
-        getRIOUSBButton(),
-        Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16), color: Colors.blue),
-          margin: const EdgeInsets.all(16),
-          padding: const EdgeInsets.all(8),
-          child: Row(
-            children: [
-              getConnectedText(),
-              SizedBox(
-                width: 10,
+        Row(
+          children: [
+            getRIOUSBButton(),
+            Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16), color: Colors.blue),
+              margin: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(8),
+              child: Row(
+                children: [
+                  getConnectedText(),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    "(${widget.comms.comms.ipAddr})",
+                    style: TextStyle(fontFamily: "BebasNeue", fontSize: 18),
+                  ),
+                  SizedBox(
+                    width: 25,
+                  ),
+                  Text(
+                    "Mode: ${Platform.isWindows ? "Windows (NT4)" : "USB"}",
+                    style: TextStyle(fontFamily: "BebasNeue", fontSize: 30),
+                  )
+                  // SizedBox(width: 15,),
+                ],
               ),
-              Text(
-                "(${widget.comms.comms.ipAddr})",
-                style: TextStyle(fontFamily: "BebasNeue", fontSize: 18),
-              ),
-              SizedBox(
-                width: 25,
-              ),
-              Text(
-                "Mode: ${Platform.isWindows ? "Windows (NT4)" : "USB"}",
-                style: TextStyle(fontFamily: "BebasNeue", fontSize: 30),
-              )
-              // SizedBox(width: 15,),
-            ],
-          ),
+            ),
+          ],
         )
       ],
     );
@@ -119,16 +123,20 @@ class _StatusBarState extends State<StatusBar>
 
   Widget getReconnectButton() {
     if (widget.comms.comms.isConnected()) return const SizedBox.shrink();
-    return FilledButton(
-        onPressed: () {
-          widget.comms.setupComms();
-          setState(() {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text(
-                    "Attempted to reconnect by re-initializing comms. ${Platform.isWindows ? "\nReconnecting to NT4 on ${widget.comms.comms.ipAddr}" : "Reopening USB Connection"}")));
-          });
-        },
-        child: Text("Re-Init Comms (💀)"));
+    return Row(
+      children: [
+        FilledButton(
+            onPressed: () {
+              widget.comms.setupComms();
+              setState(() {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text(
+                        "Attempted to reconnect by re-initializing comms. ${Platform.isWindows ? "\nReconnecting to NT4 on ${widget.comms.comms.ipAddr}" : "Reopening USB Connection"}")));
+              });
+            },
+            child: Text("Re-Init Comms (💀)")),
+      ],
+    );
   }
 
   Widget getRIOUSBButton() {
@@ -137,7 +145,7 @@ class _StatusBarState extends State<StatusBar>
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16), color: Colors.blue),
       margin: const EdgeInsets.all(16),
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(16),
       child: Row(
         children: [
           Checkbox(

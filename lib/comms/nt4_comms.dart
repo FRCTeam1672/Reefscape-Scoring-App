@@ -15,10 +15,13 @@ class NT4Comms implements Comms {
   late NT4Topic _coralLevelPub;
   late NT4Topic _algaeLevelPub;
   late NT4Topic _coralStationPub;
-  String _currentSide = "A";
 
+
+  String _currentSide = "A";
   int _currentLevel = 1;
   int _currentAlgae = 2;
+  int _currentStation = 1;
+
   bool _connected = false;
 
   bool _rioUSB = false;
@@ -84,8 +87,7 @@ class NT4Comms implements Comms {
 
   @override
   void sendAllData() {
-    print('sending all data');
-    sendData(ButtonManager.stateManager.currentSide, ButtonManager.stateManager.currentLevel, -1, ButtonManager.stateManager.currentAlgae);
+    sendData(ButtonManager.stateManager.currentSide, ButtonManager.stateManager.currentLevel, ButtonManager.stateManager.currentStation, ButtonManager.stateManager.currentAlgae);
   }
 
   @override
@@ -93,11 +95,11 @@ class NT4Comms implements Comms {
     _currentSide = reef;
     _currentLevel = level;
     _currentAlgae = algae;
+    _currentStation = coralStation;
 
     _client.addSample(_reefSidePub, reef);
     _client.addSample(_coralLevelPub, level);
-    //TODO FIX CORAL STATION
-    _client.addSample(_coralStationPub, -1);
+    _client.addSample(_coralStationPub, coralStation);
     _client.addSample(_algaeLevelPub, algae);
 
   }

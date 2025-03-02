@@ -66,6 +66,8 @@ flutter:
      - assets/reefscape_logo.png
      - assets/reef_branch_image.png
      - assets/team_logo.png
+     - assets/coral_station_left.png
+     - assets/coral_station_right.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

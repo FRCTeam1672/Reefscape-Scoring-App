@@ -2,6 +2,7 @@ class ButtonStateManager{
   String _currentSide = "A";
   int _currentLevel = 1;
   int _currentAlgae = 2;
+  int _currentStation = 1;
 
 
   String get currentSide {
@@ -28,6 +29,14 @@ class ButtonStateManager{
   set currentAlgae(int current) {
     print("Updated algae.");
     _currentAlgae = current;
+  }
+
+  int get currentStation {
+    return _currentStation;
+  }
+
+  set currentStation(int current) {
+    _currentStation = current;
   }
 
 }

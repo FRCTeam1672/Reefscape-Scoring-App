@@ -22,13 +22,13 @@ class _BranchScoreWidgetState extends State<BranchScoreWidget> {
 
     Map<String, List<double>> coords = {
       //name top  left
-      "1": [630, 70],
-      "2": [500, 70],
-      "3": [350, 70],
-      "4": [140, 70],
-      "A0": [570, 350],
-      "A2": [430, 180],
-      "A3": [250, 180],
+      "1": [630 - 200, 70],
+      "2": [500 - 200, 70],
+      "3": [350 - 200, 70],
+      "4": [140 - 200, 70],
+      "A0": [630 - 200, 200],
+      "A2": [430 - 200, 180],
+      "A3": [250 - 200, 180],
     };
     return Stack(
       children: [
@@ -38,7 +38,7 @@ class _BranchScoreWidgetState extends State<BranchScoreWidget> {
             fit: BoxFit.cover,
           ),
         ),
-        ScoringButton(
+        ReefscapeButton(
           coords: coords,
           buttonState: buttonState,
           name: "1",
@@ -46,7 +46,7 @@ class _BranchScoreWidgetState extends State<BranchScoreWidget> {
           callback: () => setState(() {}),
           comms: widget.comms,
         ),
-        ScoringButton(
+        ReefscapeButton(
           coords: coords,
           buttonState: buttonState,
           name: "2",
@@ -55,7 +55,7 @@ class _BranchScoreWidgetState extends State<BranchScoreWidget> {
           comms: widget.comms,
         ),
 
-        ScoringButton(
+        ReefscapeButton(
             coords: coords,
             buttonState: buttonState,
             reef: false,
@@ -63,16 +63,17 @@ class _BranchScoreWidgetState extends State<BranchScoreWidget> {
             callback: () => setState(() {}),
             comms: widget.comms),
 
-        ScoringButton(
-            coords: coords,
-            buttonState: buttonState,
-            reef: false,
-            name: "4",
-            callback: () => setState(() {}),
-            comms: widget.comms),
+        //NO L4
+        // ReefscapeButton(
+        //     coords: coords,
+        //     buttonState: buttonState,
+        //     reef: false,
+        //     name: "4",
+        //     callback: () => setState(() {}),
+        //     comms: widget.comms),
 
         //Algae
-        ScoringButton(
+        ReefscapeButton(
             coords: coords,
             buttonState: buttonState,
             reef: false,
@@ -80,7 +81,7 @@ class _BranchScoreWidgetState extends State<BranchScoreWidget> {
             name: "A0",
             comms: widget.comms,
             callback: () => setState(() {})),
-        ScoringButton(
+        ReefscapeButton(
           coords: coords,
           buttonState: buttonState,
           reef: false,
@@ -90,7 +91,7 @@ class _BranchScoreWidgetState extends State<BranchScoreWidget> {
           callback: () => setState(() {}),
         ),
         //Algae
-        ScoringButton(
+        ReefscapeButton(
           coords: coords,
           buttonState: buttonState,
           reef: false,
