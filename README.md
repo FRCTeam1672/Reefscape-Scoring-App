@@ -12,14 +12,15 @@ To build the application, ensure you have installed [Flutter for Windows](https:
 Then, change the ip in `lib/comms/nt4.dart` to your roboRIO ip.
 ```dart
 void findRobotIP() {
-    _robotAddress = _rioUSB ? "172.22.11.2" : "10.TE.AM.2";
+    _robotAddress = kDebugMode ? "127.0.0.1": _rioUSB ? "172.22.11.2" : "10.TE.AM.2";
   }
 ```
+where `TE.AM` is your team's number. For example, 1672 would be `10.16.72.2`.
 
 Then, simply run in the terminal `flutter build windows`. The compiled app will then publish to NT4 under the following topics:
 * `/AppScoring/ReefSide`
 * `/AppScoring/CoralLevel`
 * `/AppScoring/AlgaeLevel`
-* `/AppScoring/CoralStation` (unused in app)
+* `/AppScoring/CoralStation`
 
 Fetch these values using NT4 in your Robot program. They will be updated every 500ms.
