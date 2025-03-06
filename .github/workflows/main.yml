@@ -1,0 +1,20 @@
+on: push
+jobs:
+  main:
+    runs-on: windows-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - run: flutter build windows
+      - name: Zip build folder
+        run: |
+          Compress-Archive -Path build\windows\runner\Release\* -DestinationPath build\windows-release.zip
+      - name: Upload release zip as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: windows-release
+          path: build\windows-release.zip
