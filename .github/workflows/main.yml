@@ -12,7 +12,7 @@ jobs:
       - run: flutter build windows
       - name: Zip build folder
         run: |
-          Compress-Archive -Path build\windows\runner\Release\* -DestinationPath build\windows-release.zip
+          Compress-Archive -Path build\windows\x64\runner\Release\* -DestinationPath build\windows-release.zip
       - name: Upload release zip as artifact
         uses: actions/upload-artifact@v4
         with:
