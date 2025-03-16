@@ -17,7 +17,7 @@ void findRobotIP() {
 ```
 where `TE.AM` is your team's number. For example, 1672 would be `10.16.72.2`.
 
-Then, simply run in the terminal `flutter build windows`. The compiled app will then publish to NT4 under the following topics:
+Then, simply run in the terminal `flutter build windows`. The compiled app will then be found in the following folder `build/windows/x64/runner/Release/` (make sure to have ALL the files in that folder, not just the .exe) be then publish to NT4 under the following topics:
 * `/AppScoring/ReefSide`
 * `/AppScoring/CoralLevel`
 * `/AppScoring/AlgaeLevel`
