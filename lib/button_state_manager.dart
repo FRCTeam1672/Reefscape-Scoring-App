@@ -1,8 +1,8 @@
 class ButtonStateManager{
   String _currentSide = "A";
-  int _currentLevel = 1;
+  int _currentLevel = 2;
   int _currentAlgae = 2;
-  int _currentStation = 1;
+  int _currentStation = 2;
 
 
   String get currentSide {

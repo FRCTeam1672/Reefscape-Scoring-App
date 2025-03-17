@@ -62,7 +62,7 @@ class NT4Comms implements Comms {
 
     _client.setProperties(_coralStationPub, false, true);
 
-    Timer.periodic(const Duration(milliseconds: 500), (timer) {
+    Timer.periodic(const Duration(milliseconds: 250), (timer) {
       if (_connected) {
         sendAllData();
       }
