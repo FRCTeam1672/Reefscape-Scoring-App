@@ -2,7 +2,7 @@
 
 ![Reefscape Scoring App Example](/img/project.png)
 
-The currently work in progress scoring app for our [2025-Robot](https://github.com/FRCTeam1672/2025-Robot), built using Flutter and NT4, designed to work on an external touchscreen monitor. 
+The Reefscape Scoring App for our [2025-Robot](https://github.com/FRCTeam1672/2025-Robot), built using Flutter and NT4, designed to work on an external touchscreen monitor, and a winner of the FIRST Mid-Atlantic Innovation in Controls Awards. 
 
 Currently, only Windows based devices are supported, with Android tablet support being considered.
 ## App Usage
